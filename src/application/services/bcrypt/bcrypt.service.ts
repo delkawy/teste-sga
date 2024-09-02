@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { hash, compare } from 'bcrypt';
+import { hash, compare } from 'bcryptjs';
 
 import { PasswordEncrypter } from '@application/domain/services/PasswordEncrypter';
 import { jwtConstants } from '@configs/auth';
