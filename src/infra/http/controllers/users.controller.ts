@@ -4,7 +4,9 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { CreateUserUseCase } from '@application/use-cases/user/create-user.use-case';
 import { AuthUserDto } from '../dto/auth-user.dto';
 import { AuthUserUseCase } from '@application/use-cases/user/auth-user.use-case';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('user')
 export class UserController {
   constructor(

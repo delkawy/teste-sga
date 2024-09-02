@@ -22,7 +22,9 @@ import { AuthGuard } from '../guards/auth.guard';
 import { DeleteTutorialUseCase } from '@application/use-cases/tutorial/delete-tutorial.use-case';
 import { EditTutorialUseCase } from '@application/use-cases/tutorial/edit-tutorial.use-case';
 import { EditTutorialDto } from '../dto/edit-tutorial.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('tutorials')
 @Controller('tutorial')
 export class TutorialsController {
   constructor(
@@ -38,6 +40,7 @@ export class TutorialsController {
     return this.listAllTutorialUseCase.execute(queries);
   }
 
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @Post()
   async create(@Body() body: CreateTutorialDto, @Request() request) {
@@ -46,6 +49,7 @@ export class TutorialsController {
     await this.createTutorialUseCase.execute({ ...body, user_id });
   }
 
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @Delete(':id')
   async delete(
@@ -57,6 +61,7 @@ export class TutorialsController {
     await this.deleteTutorialUseCase.execute({ id, user_id });
   }
 
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @Patch(':id')
   async edit(
